@@ -1,0 +1,74 @@
+1. You have to undo all of Squarespace's CSS.
+There's multiple layers of wrappers surrounding each image
+2. need to make the img and all higher level wrappers
+position:static, and set top, left, height, and width to auto
+(it takes !important quite a bit) so you end up with
+all the images full width, stacked top to bottom
+
+Note: it means "position the element where the browser
+would normally position it by default"
+
+once you get there, go to the container
+(in this case, .index-list), and set column-count:3
+(or 4, or 5, whatever) postion static is the default
+for all elements
+
+position:relative means the same as position:static,
+but it also takes top,left, right and bottom into account
+(positition:static ignores top,left,right, and bottom)
+
+
+
+/*--- Page Code Injection For Masonry Grid ---*/
+<style>
+  	.index-list {
+    	column-count:4;
+      	column-gap:25px;
+  	}
+	.index-section {
+    	position:relative;
+      	top:0;
+      	left:0;
+      	height:auto;
+      	width:auto !important;
+      	float:none !important;
+      	display:block !important;
+      	border:none !important;
+      	overflow:visible !important;
+      	padding:0 !important;
+  	}
+  	.index-item {
+    	height:auto !important;
+      	width:auto;
+      	padding-bottom:25px;
+  	}
+  	.index-item-image-wrapper {
+    	position:static;
+      	top:0;
+      	left:0;
+      	height:auto !important;
+      	width:auto !important;
+  	}
+  	.js-index-item-image {
+    	height:100% !important;
+      	width:100% !important;
+      	display:block;
+      	top:0 !important;
+      	left:0 !important;
+  	}
+  	@media screen and (max-width:1499px) {
+    	.index-list {
+        	column-count:3;
+      	}
+  	}
+  	@media screen and (max-width:1299px) {
+    	.index-list {
+        	column-count:2;
+      	}
+  	}
+  	@media screen and (max-width:640px) {
+    	.index-list {
+        	column-count:1;
+      	}
+  	}
+</style>
